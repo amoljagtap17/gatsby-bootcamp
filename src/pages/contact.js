@@ -8,7 +8,7 @@ const ContactPage = () => {
     <Layout>
       <Head title="Contact" />
       <h1>Contact</h1>
-      <p>The best way to reach me is via <a href="https://www.github.com" target="_blank" rel="noopener noreferrer">github/xyz</a></p>
+      {/* <p>The best way to reach me is via <a href="https://www.github.com" target="_blank" rel="noopener noreferrer">github/xyz</a></p> */}
     </Layout>
   )
 }
