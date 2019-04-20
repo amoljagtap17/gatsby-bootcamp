@@ -1,0 +1,50 @@
+import React from 'react'
+import Layout from '../components/layout'
+
+import { Link, graphql, useStaticQuery } from 'gatsby'
+import blogStyles from './blog.module.scss'
+
+const BlogPage = () => {
+
+  const { allMarkdownRemark } = useStaticQuery(graphql`
+    {
+      allMarkdownRemark {
+        edges {
+          node {
+            fields {
+              slug
+            }
+            frontmatter {
+              title
+              date
+            }
+          }
+        }
+      }
+    }  
+  `)
+
+  // console.log('data', allMarkdownRemark)
+  
+  return (
+    <Layout>
+      <h1>My Blogs</h1>
+      <ol className={blogStyles.posts}>
+        {
+          allMarkdownRemark.edges.map((edge, index) => {
+            return (
+              <li key={index} className={blogStyles.post}>
+                <Link to={`/blog/${edge.node.fields.slug}`}>
+                  <h2>{edge.node.frontmatter.title}</h2>
+                  <p>{edge.node.frontmatter.date}</p>
+                </Link>
+              </li>
+            )
+          })
+        }
+      </ol>
+    </Layout>
+  )
+}
+
+export default BlogPage
